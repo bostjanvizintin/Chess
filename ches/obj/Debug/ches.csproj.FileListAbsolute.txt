@@ -1,0 +1,9 @@
+c:\users\bostjanv\documents\visual studio 2017\Projects\ches\ches\bin\Debug\ches.exe.config
+c:\users\bostjanv\documents\visual studio 2017\Projects\ches\ches\bin\Debug\ches.exe
+c:\users\bostjanv\documents\visual studio 2017\Projects\ches\ches\bin\Debug\ches.pdb
+c:\users\bostjanv\documents\visual studio 2017\Projects\ches\ches\obj\Debug\ches.csprojResolveAssemblyReference.cache
+c:\users\bostjanv\documents\visual studio 2017\Projects\ches\ches\obj\Debug\ches.Properties.Resources.resources
+c:\users\bostjanv\documents\visual studio 2017\Projects\ches\ches\obj\Debug\ches.csproj.GenerateResource.Cache
+c:\users\bostjanv\documents\visual studio 2017\Projects\ches\ches\obj\Debug\ches.exe
+c:\users\bostjanv\documents\visual studio 2017\Projects\ches\ches\obj\Debug\ches.pdb
+c:\users\bostjanv\documents\visual studio 2017\Projects\ches\ches\obj\Debug\ches.GameWindow.resources
