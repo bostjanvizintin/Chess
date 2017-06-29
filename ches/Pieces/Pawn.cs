@@ -12,7 +12,7 @@ namespace ches.Pieces
             m_type = Type.PAWN;
         }
 
-        public override Point[] GetAllPossiblePaths()
+       /* public override Point[] GetAllPossiblePaths()
         {
             List<Point> allPaths = new List<Point>();
 
@@ -47,7 +47,7 @@ namespace ches.Pieces
                 }
             }
             return allPaths.ToArray();
-        }
+        }*/
 
         public override bool ValidateMove(int x, int y)
         {

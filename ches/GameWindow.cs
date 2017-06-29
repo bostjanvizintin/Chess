@@ -16,7 +16,6 @@ namespace ches
 
         private void canvas_Paint(object sender, PaintEventArgs e)
         {
-            game.StartGame();
             Graphics g = canvas.CreateGraphics();
             game.startGraphics(g);
         }
@@ -28,7 +27,8 @@ namespace ches
 
         private void GameWindow_Load(object sender, EventArgs e)
         {
-           //AllocConsole();
+            game.StartGame();
+            //AllocConsole();
         }
 
         private void canvas_MouseClick(object sender, MouseEventArgs e)

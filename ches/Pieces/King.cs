@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace ches.Pieces
@@ -10,13 +11,29 @@ namespace ches.Pieces
             m_type = Type.KING;
         }
 
-        public override Point[] GetAllPossiblePaths()
+        public bool CheckForCheck(int x, int y)
         {
-            return new Point[] { };
+            int tmpx = this.Location.X;
+            int tmpy = this.Location.Y;
+
+            this.Location = new Point(x, y);
+
+            foreach (Piece piece in m_board.Pieces)
+            {
+                if(piece.Type != Type.KING && piece.Color != this.Color && piece.ValidateMove(x, y))
+                {
+                    this.Location = new Point(tmpx, tmpy);
+                    return true;
+                }
+            }
+            this.Location = new Point(tmpx, tmpy);
+            return false;
         }
 
         public override bool ValidateMove(int x, int y)
         {
+            if(CheckForCheck(x, y))
+                return false;
             if(IzvenBoarda(x, y))
                 return false;
 

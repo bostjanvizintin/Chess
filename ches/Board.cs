@@ -9,6 +9,9 @@ namespace ches
         List<Piece> m_board = new List<Piece>();
         Pieces.Color turn = ches.Pieces.Color.WHITE;
 
+        King whiteKing;
+        King blackKing;
+
         public Board()
         {
 
@@ -23,7 +26,8 @@ namespace ches
             }
 
             //set king queen
-            m_board.Add(new King(ches.Pieces.Color.BLACK, new Point(4, 0), this));
+            blackKing = new King(ches.Pieces.Color.BLACK, new Point(4, 0), this);
+            m_board.Add(blackKing);
             m_board.Add(new Queen(ches.Pieces.Color.BLACK, new Point(3, 0), this));
 
             //set rooks
@@ -46,7 +50,8 @@ namespace ches
             }
 
             //set king queen
-            m_board.Add(new King(ches.Pieces.Color.WHITE, new Point(4, 7), this));
+            whiteKing = new King(ches.Pieces.Color.WHITE, new Point(4, 7), this);
+            m_board.Add(whiteKing);
             m_board.Add(new Queen(ches.Pieces.Color.WHITE, new Point(3, 7), this));
 
             //set rooks
@@ -77,7 +82,10 @@ namespace ches
             }
         }
 
-
+        public bool CheckForCheckMate()
+        {
+            return false;
+        }
 
         public void NextPlayer()
         {
@@ -102,6 +110,10 @@ namespace ches
         public List<Piece> Pieces { get { return m_board; } }
 
         public ches.Pieces.Color Turn { get { return turn; } }
+
+        public King WhiteKing { get { return whiteKing; } }
+
+        public King BlackKing { get { return blackKing; } }
 
     }
 }

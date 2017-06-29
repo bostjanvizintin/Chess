@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace ches.Pieces
@@ -8,11 +9,6 @@ namespace ches.Pieces
         public Bishop(Color color, Point point, Board board) : base(color, point, board)
         {
             m_type = Type.BISHOP;
-        }
-
-        public override Point[] GetAllPossiblePaths()
-        {
-            return new Point[] { };
         }
 
         public override bool ValidateMove(int x, int y)

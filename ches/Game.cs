@@ -38,7 +38,7 @@ namespace ches
         public void MouseClicked(object sender, MouseEventArgs e)
         {
             update.Clicked(sender, e);
-            gEngine.init();
+            gEngine.render();
         }
 
         public Board Board { get { return board; } }

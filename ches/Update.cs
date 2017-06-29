@@ -38,7 +38,19 @@ namespace ches
             {
                 if(!selectedPiece.Location.Equals(new Point(x, y)) && selectedPiece.ValidateMove(x, y))
                 {
+                    int tmpx = selectedPiece.Location.X;
+                    int tmpy = selectedPiece.Location.Y;
+
                     selectedPiece.Move(x, y);
+
+
+                    King king = board.Turn == Pieces.Color.BLACK ? board.BlackKing : board.WhiteKing;
+                    if (king.CheckForCheck(king.Location.X, king.Location.Y))
+                    {
+                        selectedPiece.Move(tmpx, tmpy);
+                        selectedPiece = null;
+                        return;
+                    }
                     board.NextPlayer();
                 }
                 selectedPiece = null;

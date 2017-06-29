@@ -26,8 +26,15 @@ namespace ches
         }
 
 
-        private void render()
+        public void render()
         {
+
+            if (game.Board.CheckForCheckMate())
+            {
+                game.stopGame();
+                game.StartGame();
+            }
+
             int framesRendered = 0;
             long startTime = Environment.TickCount;
 
@@ -82,25 +89,27 @@ namespace ches
 
                     }
                     frameGraphics.DrawImage(res, piece.Location.X * Piece.WIDTH, piece.Location.Y * Piece.HEIGHT, Piece.WIDTH, Piece.HEIGHT);
-                    
+                }
+
+                foreach (Piece piece in game.Board.Pieces.ToArray())
+                {
                     //Draw dot on selected piece
                     if (game.Update.SelectedPiece != null && game.Update.SelectedPiece.Equals(piece))
                     {
                         frameGraphics.FillEllipse(new SolidBrush(System.Drawing.Color.Red), game.Board.GetPieceOnLocation(new Point(piece.Location.X, piece.Location.Y)).Location.X * 64 + 25, game.Board.GetPieceOnLocation(new Point(piece.Location.X, piece.Location.Y)).Location.Y * 64 + 25, 15, 15);
 
                         //Draw all possible paths
-                        GraphicsPath graphPath = new GraphicsPath();
+                        //GraphicsPath graphPath = new GraphicsPath();
 
                         foreach (Point point in piece.GetAllPossiblePaths())
                         {
-                            graphPath.AddLine(game.Board.GetPieceOnLocation(new Point(piece.Location.X, piece.Location.Y)).Location.X * 64 + 32, game.Board.GetPieceOnLocation(new Point(piece.Location.X, piece.Location.Y)).Location.Y * 64 + 32, point.X, point.Y);
+                            //graphPath.AddLine(game.Board.GetPieceOnLocation(new Point(piece.Location.X, piece.Location.Y)).Location.X * 64 + 32, game.Board.GetPieceOnLocation(new Point(piece.Location.X, piece.Location.Y)).Location.Y * 64 + 32, point.X, point.Y);
+                            frameGraphics.FillEllipse(new SolidBrush(System.Drawing.Color.Green), point.X - 7, point.Y - 7, 15, 15);
                         }
 
-                        Pen pen = new Pen(System.Drawing.Color.Red, 3);
-                        frameGraphics.DrawPath(pen, graphPath);
+                        //Pen pen = new Pen(System.Drawing.Color.Green, 3);
+                        //frameGraphics.DrawPath(pen, graphPath);
                     }
-
-
                 }
 
                 drawHandle.DrawImage(frame, 0, 0);
@@ -118,6 +127,11 @@ namespace ches
 
         public void stop()
         {
+            Bitmap frame = new Bitmap(Game.CANVAS_WIDTH, Game.CANVAS_HEIGHT);
+            Graphics frameGraphics = Graphics.FromImage(frame);
+            frameGraphics.DrawString("GAME OVER", new Font(FontFamily.GenericSansSerif, 18), new SolidBrush(System.Drawing.Color.Black), new Point(150, 200));
+            frameGraphics.DrawString("CLICK ON SCREEN FOR NEW GAME", new Font(FontFamily.GenericSansSerif, 18), new SolidBrush(System.Drawing.Color.Black), new Point(50, 250));
+            drawHandle.DrawImage(frame, 0, 0);
             renderThread.Abort();
         }
     }

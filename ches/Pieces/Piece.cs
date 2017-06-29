@@ -38,7 +38,21 @@ namespace ches.Pieces
 
         abstract public bool ValidateMove(int x, int y);
 
-        abstract public Point[] GetAllPossiblePaths();
+        public Point[] GetAllPossiblePaths()
+        {
+            List<Point> allPaths = new List<Point>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (ValidateMove(i, j))
+                        allPaths.Add(new Point((i + 1) * 64 - 32, (j + 1) * 64 - 32));
+                }
+            }
+
+            return allPaths.ToArray();
+        }
 
         public bool IzvenBoarda(int x, int y)
         {
